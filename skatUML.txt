@@ -1,0 +1,26 @@
+[Skat]++1-2[Karta]
+
+[Gracz]++1-1[Wynik gracza w całej rozgrywce|wygranych;przegranych;punkty]
+[Gracz]<>1-1..10[Karta]
+
+
+[Rodzaj gry]^-[Null]
+[Rodzaj gry]^-[Gra atutowa | Wartość bazowa]
+[Gra atutowa]^-[Grand]
+[Gra atutowa]^-[Gra Kolorowa|Kolor]
+
+[Rozdanie|Deklaracje/Mnożniki]<>-[Wysokość licytacji]
+[Rozdanie]<>1-rozgrywajacy 1 [Gracz]
+[Rozdanie]<>1-przeciwnik 2 [Gracz]
+
+
+[Rozdanie]<>1-1[Szczyty | liczba
+;zCzyBez]
+[Rozdanie]<>1-1[Rodzaj gry]
+[Rozdanie]<>1-1[Wynik|Przegrana/Wygrana;wartość]
+[Rozdanie]<>1-zebrane karty rozgrywającego 0..30[Karty]
+[Rozdanie]++1-1[Skat]
+
+[Karta |Figura; Kolor]
+
+[Rozgrywka | Liczba rozdań]1++-12.18.24.36[Rozdanie]
