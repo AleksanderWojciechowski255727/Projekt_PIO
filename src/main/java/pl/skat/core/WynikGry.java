@@ -1,3 +1,5 @@
+package pl.skat.core;
+
 public class WynikGry {
     public WynikGry(boolean czyWygrana, int wynik){
         wygrana = czyWygrana;

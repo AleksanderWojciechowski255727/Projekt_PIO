@@ -1,3 +1,5 @@
+package pl.skat.core;
+
 public class Rozdanie
 {
 
