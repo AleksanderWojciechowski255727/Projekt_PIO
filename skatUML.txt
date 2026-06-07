@@ -1,23 +1,26 @@
-[main.java.pl.skat.core.Skat]<>0..1-2[main.java.pl.skat.core.Karta]
+[Skat]<>0..1-2[Karta]
 
-[main.java.pl.skat.core.Gracz]++1-1[Wynik gracza w całej rozgrywce|wygranych;przegranych;punkty]
-[main.java.pl.skat.core.Gracz]++0..1- karty początkowe 10[main.java.pl.skat.core.Karta]
-[main.java.pl.skat.core.Gracz]++1-zebrane karty 0..30[main.java.pl.skat.core.Karta]
 
-[Rodzaj gry]^-[Null]
+[Gracz]1- karty początkowe 10[Karta]
+[Gracz]1-zebrane karty 0..30[Karta]
+
+[Rodzaj gry]^-[Gra Null]
 [Rodzaj gry]^-[Gra atutowa | Wartość bazowa]
 [Gra atutowa]^-[Grand]
-[Gra atutowa]^-[Gra Kolorowa|main.java.pl.skat.core.Kolor]
+[Gra atutowa]^-[Gra Kolorowa|Kolor]
 
-[main.java.pl.skat.core.Rozgrywka]++-3[main.java.pl.skat.core.Gracz]
+[Rozgrywka]1- bierze udział w 3[Gracz]
 
-[main.java.pl.skat.core.Rozdanie|Wartość licytacji]<>1-rozgrywajacy 1 [main.java.pl.skat.core.Gracz]
-[main.java.pl.skat.core.Rozdanie]<>1-przeciwnik 2 [main.java.pl.skat.core.Gracz]
+[Rozdanie|Wartość licytacji;Zpasowane;Deklaracje/Mnożniki]*-rozgrywajacy 0..1[Gracz]
+[Rozdanie]*-przeciwnik 0..2[Gracz]
 
-[main.java.pl.skat.core.Rozdanie]<>*-1[Rodzaj gry]
-[main.java.pl.skat.core.Rozdanie]++1-1[Wynik|Przegrana/Wygrana;wartość]
-[main.java.pl.skat.core.Rozdanie]++1-1[main.java.pl.skat.core.Skat]
+[Rozdanie]*-0..1[Rodzaj gry]
+[Rozdanie]++1-0..1[Wynik|Przegrana/Wygrana;wartość]
+[Rozdanie]++1-1[Skat]
 
-[main.java.pl.skat.core.Karta |Figura; main.java.pl.skat.core.Kolor]
+[Karta |Figura; Kolor]
 
-[main.java.pl.skat.core.Rozgrywka | Liczba rozdań]1++-[main.java.pl.skat.core.Rozdanie]
+[Rozgrywka | Liczba rozdań]1++-*[Rozdanie]
+
+[Rozgrywka]++1-3[Wynik gracza w całej rozgrywce]
+[Wynik gracza w całej rozgrywce|wygranych;przegranych;punkty]1-1[Gracz]
