@@ -1,8 +1,8 @@
 [Skat]<>0..1-2[Karta]
 
 
-[Gracz]1- karty początkowe 10[Karta]
-[Gracz]1-zebrane karty 0..30[Karta]
+[Gracz]0..1- karty początkowe 10[Karta]
+[Gracz]0..1-zebrane karty 0..30[Karta]
 
 [Rodzaj gry]^-[Gra Null]
 [Rodzaj gry]^-[Gra atutowa | Wartość bazowa]
