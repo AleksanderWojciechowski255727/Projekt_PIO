@@ -72,8 +72,7 @@ public class Rozdanie {
         if (jestGraNull()){
             return obliczWartoscGryNull();
         }
-
-        return obliczWartoscBazowaGry();
+        return obliczWartoscBazowaGry()*2;
     }
 
     public int obliczWartoscBazowaGry(){
