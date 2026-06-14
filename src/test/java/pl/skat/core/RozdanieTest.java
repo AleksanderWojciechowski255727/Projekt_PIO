@@ -19,15 +19,7 @@ public class RozdanieTest {
 
     @Test
     public void graczWygrywaGdyZdobyl61Oczek(){
-        gracz.ustawZebraneKarty(karty(
-                new Karta(Kolor.TREFL, Figura.AS),
-                new Karta(Kolor.PIK, Figura.AS),
-                new Karta(Kolor.SERCE, Figura.AS),
-                new Karta(Kolor.DZWONEK, Figura.AS),
-                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
-                new Karta(Kolor.PIK, Figura.KROL),
-                new Karta(Kolor.SERCE, Figura.KROLOWA)
-        ));
+        gracz.ustawZebraneKarty(kartyZa61Oczek());
 
         WynikGry wynik = rozdanie.obliczWynik();
 
@@ -56,10 +48,61 @@ public class RozdanieTest {
         assertEquals(false, wynik.wygrana);
     }
 
+    @Test
+    public void graczWygrywaGreKolorowaGdyZdobyl61Oczek(){
+        rozdanie.ustawRodzajGry(graKolorowa());
+        gracz.ustawZebraneKarty(kartyZa61Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(true, wynik.wygrana && wynik.wynik == 61);
+    }
+
+    @Test
+    public void graczPrzegrywaGreKolorowaGdyZdobyl60Oczek(){
+        rozdanie.ustawRodzajGry(graKolorowa());
+        gracz.ustawZebraneKarty(kartyZa60Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(false, wynik.wygrana);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
         return rodzajGry;
+    }
+
+    private RodzajGry graKolorowa(){
+        RodzajGry rodzajGry = new RodzajGry();
+        rodzajGry.typ = TypGry.KOLOROWA;
+        rodzajGry.kolor = Kolor.TREFL;
+        return rodzajGry;
+    }
+
+    private ArrayList<Karta> kartyZa61Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.SERCE, Figura.KROLOWA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa60Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.SERCE, Figura.JOPEK)
+        );
     }
 
     private ArrayList<Karta> karty(Karta... karty){
