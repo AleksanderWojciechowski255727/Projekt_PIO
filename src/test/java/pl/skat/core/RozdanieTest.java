@@ -44,6 +44,18 @@ public class RozdanieTest {
         assertEquals(true, wynik.wygrana);
     }
 
+    @Test
+    public void graczPrzegrywaGreNullGdyZebralJednaKarte(){
+        rozdanie.ustawRodzajGry(graNull());
+        gracz.ustawZebraneKarty(karty(
+                new Karta(Kolor.TREFL, Figura.SIODEMKA)
+        ));
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(false, wynik.wygrana);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
