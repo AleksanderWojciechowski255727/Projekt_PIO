@@ -61,7 +61,7 @@ public class Rozdanie {
         }
 
         if (jestGraPunktowa()){
-            rezultat.wygrana = rezultat.wynik >= 61;
+            rezultat.wygrana = rezultat.wynik >= 61 && obliczWartoscGry() >= wartoscLicytacji;
         }
 
         return rezultat;
@@ -69,6 +69,10 @@ public class Rozdanie {
 
 
     public int obliczWartoscGry(){
+        return obliczWartoscBazowaGry()*2;
+    }
+
+    public int obliczWartoscBazowaGry(){
         if (rodzaj != null && rodzaj.typ == TypGry.GRAND){
             return 24;
         }

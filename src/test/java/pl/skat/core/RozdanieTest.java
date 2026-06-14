@@ -91,40 +91,76 @@ public class RozdanieTest {
 
 
     @Test
-    public void graGrandMaWartosc24(){
+    public void graGrandMaBazowaWartosc24(){
         rozdanie.ustawRodzajGry(graGrand());
 
-        assertEquals(24, rozdanie.obliczWartoscGry());
+        assertEquals(24, rozdanie.obliczWartoscBazowaGry());
     }
 
 
     @Test
-    public void graKolorowaTreflMaWartosc12(){
+    public void graKolorowaTreflMaBazowaWartosc12(){
         rozdanie.ustawRodzajGry(graKolorowa());
 
-        assertEquals(12, rozdanie.obliczWartoscGry());
+        assertEquals(12, rozdanie.obliczWartoscBazowaGry());
     }
 
 
     @Test
-    public void graKolorowaPikMaWartosc11(){
+    public void graKolorowaPikMaBazowaWartosc11(){
         rozdanie.ustawRodzajGry(graKolorowa(Kolor.PIK));
 
-        assertEquals(11, rozdanie.obliczWartoscGry());
+        assertEquals(11, rozdanie.obliczWartoscBazowaGry());
     }
 
     @Test
-    public void graKolorowaSerceMaWartosc10(){
+    public void graKolorowaSerceMaBazowaWartosc10(){
         rozdanie.ustawRodzajGry(graKolorowa(Kolor.SERCE));
 
-        assertEquals(10, rozdanie.obliczWartoscGry());
+        assertEquals(10, rozdanie.obliczWartoscBazowaGry());
     }
 
     @Test
-    public void graKolorowaDzwonekMaWartosc9(){
+    public void graKolorowaDzwonekMaBazowaWartosc9(){
         rozdanie.ustawRodzajGry(graKolorowa(Kolor.DZWONEK));
 
-        assertEquals(9, rozdanie.obliczWartoscGry());
+        assertEquals(9, rozdanie.obliczWartoscBazowaGry());
+    }
+
+
+    @Test
+    public void graczPrzegrywaGdyWartoscGryJestMniejszaOdLicytacji(){
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.ustawWartoscLicytacji(50);
+        gracz.ustawZebraneKarty(kartyZa61Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(false, wynik.wygrana);
+    }
+
+
+    @Test
+    public void graczWygrywaGdyWartoscGryJestRownaLicytacji(){
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.ustawWartoscLicytacji(48);
+        gracz.ustawZebraneKarty(kartyZa61Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(true, wynik.wygrana);
+    }
+
+
+    @Test
+    public void graczWygrywaGdyWartoscGryJestWiekszaOdLicytacji(){
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.ustawWartoscLicytacji(18);
+        gracz.ustawZebraneKarty(kartyZa61Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(true, wynik.wygrana);
     }
 
     private RodzajGry graNull(){
