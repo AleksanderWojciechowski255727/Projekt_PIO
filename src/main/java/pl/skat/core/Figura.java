@@ -1,15 +1,6 @@
-package pl.skat.core.KlasyGry;
+package pl.skat.core;
 
-public class Karta{
-
-
-
-
-
-    public Kolor kolor;
-
-
-    public enum Figura{
+public enum Figura{
         SIODEMKA(0),
         OSEMKA(0),
         DZIEWIATKA(0),
@@ -31,8 +22,3 @@ public class Karta{
 
 
     }
-
-    public Figura figura;
-}
-
-

@@ -1,4 +1,4 @@
-package pl.skat.core.KlasyGry;
+package pl.skat.core;
 
 public class Rozdanie
 {
@@ -30,9 +30,17 @@ public class Rozdanie
         this.skat = skat;
     }
 
+    public void obliczIloscZebranychKart(){
 
+    }
 
+    public void obliczIloscOczekWZebranychKartach(){
 
+    }
+
+    public void obliczWynik(){
+
+    }
 
 
 

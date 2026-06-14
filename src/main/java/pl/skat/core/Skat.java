@@ -1,4 +1,4 @@
-package pl.skat.core.KlasyGry;
+package pl.skat.core;
 
 public class Skat {
 
