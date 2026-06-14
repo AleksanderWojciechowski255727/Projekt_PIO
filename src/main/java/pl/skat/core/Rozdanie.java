@@ -56,7 +56,7 @@ public class Rozdanie {
         rezultat.wynik = obliczIloscOczekWZebranychKartach();
 
         if (jestGraNull()){
-            rezultat.wygrana = obliczIloscZebranychKart() == 0;
+            rezultat.wygrana = obliczIloscZebranychKart() == 0 && obliczWartoscGry() >= wartoscLicytacji;
             return rezultat;
         }
 
@@ -69,6 +69,9 @@ public class Rozdanie {
 
 
     public int obliczWartoscGry(){
+        if (jestGraNull()){
+            return obliczWartoscGryNull();
+        }
         return obliczWartoscBazowaGry()*2;
     }
 
@@ -82,6 +85,22 @@ public class Rozdanie {
         }
 
         return 0;
+    }
+
+    private int obliczWartoscGryNull(){
+        if (rodzaj.hand && rodzaj.ouvert){
+            return 59;
+        }
+
+        if (rodzaj.ouvert){
+            return 46;
+        }
+
+        if (rodzaj.hand){
+            return 35;
+        }
+
+        return 23;
     }
 
     private int obliczWartoscKoloru(){

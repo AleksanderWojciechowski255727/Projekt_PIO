@@ -163,9 +163,90 @@ public class RozdanieTest {
         assertEquals(true, wynik.wygrana);
     }
 
+    @Test
+    public void graNullMaWartosc23(){
+        rozdanie.ustawRodzajGry(graNull());
+
+        assertEquals(23, rozdanie.obliczWartoscGry());
+    }
+
+    @Test
+    public void graNullHandMaWartosc35(){
+        rozdanie.ustawRodzajGry(graNullHand());
+
+        assertEquals(35, rozdanie.obliczWartoscGry());
+    }
+
+    @Test
+    public void graNullOuvertMaWartosc46(){
+        rozdanie.ustawRodzajGry(graNullOuvert());
+
+        assertEquals(46, rozdanie.obliczWartoscGry());
+    }
+
+    @Test
+    public void graNullOuvertHandMaWartosc59(){
+        rozdanie.ustawRodzajGry(graNullOuvertHand());
+
+        assertEquals(59, rozdanie.obliczWartoscGry());
+    }
+
+
+    @Test
+    public void graczPrzegrywaGreNullGdyWartoscGryJestMniejszaOdLicytacji(){
+        rozdanie.ustawRodzajGry(graNull());
+        rozdanie.ustawWartoscLicytacji(24);
+        gracz.ustawZebraneKarty(karty());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(false, wynik.wygrana);
+    }
+
+    @Test
+    public void graczWygrywaGreNullGdyWartoscGryJestRownaLicytacji(){
+        rozdanie.ustawRodzajGry(graNull());
+        rozdanie.ustawWartoscLicytacji(23);
+        gracz.ustawZebraneKarty(karty());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(true, wynik.wygrana);
+    }
+
+    @Test
+    public void graczWygrywaGreNullGdyWartoscGryJestWiekszaOdLicytacji(){
+        rozdanie.ustawRodzajGry(graNull());
+        rozdanie.ustawWartoscLicytacji(18);
+        gracz.ustawZebraneKarty(karty());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(true, wynik.wygrana);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
+        return rodzajGry;
+    }
+
+    private RodzajGry graNullHand(){
+        RodzajGry rodzajGry = graNull();
+        rodzajGry.hand = true;
+        return rodzajGry;
+    }
+
+    private RodzajGry graNullOuvert(){
+        RodzajGry rodzajGry = graNull();
+        rodzajGry.ouvert = true;
+        return rodzajGry;
+    }
+
+    private RodzajGry graNullOuvertHand(){
+        RodzajGry rodzajGry = graNull();
+        rodzajGry.hand = true;
+        rodzajGry.ouvert = true;
         return rodzajGry;
     }
 
