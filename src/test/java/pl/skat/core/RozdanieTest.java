@@ -89,6 +89,14 @@ public class RozdanieTest {
         assertEquals(false, wynik.wygrana);
     }
 
+
+    @Test
+    public void graGrandMaWartosc24(){
+        rozdanie.ustawRodzajGry(graGrand());
+
+        assertEquals(24, rozdanie.obliczWartoscGry());
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;

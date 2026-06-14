@@ -67,6 +67,12 @@ public class Rozdanie {
         return rezultat;
     }
 
+
+    public int obliczWartoscGry(){
+        //Placeholder
+        return 0;
+    }
+
     private boolean jestGraNull(){
         return rodzaj != null && rodzaj.typ == TypGry.NULL;
     }
