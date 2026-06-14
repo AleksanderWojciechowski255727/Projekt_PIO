@@ -34,6 +34,22 @@ public class RozdanieTest {
         assertEquals(true, wynik.wygrana && wynik.wynik == 61);
     }
 
+    @Test
+    public void graczWygrywaGreNullGdyNieZebralZadnejKarty(){
+        rozdanie.ustawRodzajGry(graNull());
+        gracz.ustawZebraneKarty(karty());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(true, wynik.wygrana);
+    }
+
+    private RodzajGry graNull(){
+        RodzajGry rodzajGry = new RodzajGry();
+        rodzajGry.typ = TypGry.NULL;
+        return rodzajGry;
+    }
+
     private ArrayList<Karta> karty(Karta... karty){
         ArrayList<Karta> zebraneKarty = new ArrayList<>();
 
@@ -44,4 +60,3 @@ public class RozdanieTest {
         return zebraneKarty;
     }
 }
-
