@@ -56,7 +56,7 @@ public class Rozdanie {
         rezultat.wynik = obliczIloscOczekWZebranychKartach();
 
         if (jestGraNull()){
-            rezultat.wygrana = obliczIloscZebranychKart() == 0;
+            rezultat.wygrana = obliczIloscZebranychKart() == 0 && obliczWartoscGry() >= wartoscLicytacji;
             return rezultat;
         }
 
