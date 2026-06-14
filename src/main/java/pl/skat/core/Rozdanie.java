@@ -72,6 +72,11 @@ public class Rozdanie {
         if (rodzaj != null && rodzaj.typ == TypGry.GRAND){
             return 24;
         }
+
+        if (rodzaj != null && rodzaj.typ == TypGry.KOLOROWA && rodzaj.kolor == Kolor.TREFL){
+            return 12;
+        }
+
         return 0;
     }
 
