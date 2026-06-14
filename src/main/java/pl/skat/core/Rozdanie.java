@@ -1,16 +1,13 @@
 package pl.skat.core;
 
-public class Rozdanie
-{
+import java.util.ArrayList;
 
+public class Rozdanie {
     public Rozdanie(Gracz gracz, Gracz przeciwnik1, Gracz przeciwnik2){
         this.gracz = gracz;
         this.przeciwnik1 = przeciwnik1;
         this.przeciwnik2 = przeciwnik2;
-
-
-//        rozdajKarty(gracz)
-
+        // rozdajKarty(gracz)
     }
 
     public void ustawRodzajGry(RodzajGry rodzaj){
@@ -18,8 +15,6 @@ public class Rozdanie
     }
 
     private void rozdajKarty(){
-
-
     }
 
     public void ustawWartoscLicytacji(int wartosc){
@@ -30,31 +25,44 @@ public class Rozdanie
         this.skat = skat;
     }
 
-    public void obliczIloscZebranychKart(){
+    public int obliczIloscZebranychKart(){
+        ArrayList zebraneKarty = gracz.getZebraneKarty();
 
+        if (zebraneKarty == null){
+            return 0;
+        }
+
+        return zebraneKarty.size();
     }
 
-    public void obliczIloscOczekWZebranychKartach(){
+    public int obliczIloscOczekWZebranychKartach(){
+        ArrayList zebraneKarty = gracz.getZebraneKarty();
+        int suma = 0;
 
+        if (zebraneKarty == null){
+            return suma;
+        }
+
+        for (Object obiekt : zebraneKarty){
+            Karta karta = (Karta) obiekt;
+            suma += karta.figura().getKod();
+        }
+
+        return suma;
     }
 
-    public void obliczWynik(){
-
+    public WynikGry obliczWynik(){
+        rezultat = new WynikGry();
+        rezultat.wynik = obliczIloscOczekWZebranychKartach();
+        rezultat.wygrana = rezultat.wynik >= 61;
+        return rezultat;
     }
-
-
 
     private int wartoscLicytacji;
-
     private Gracz przeciwnik1;
     private Gracz przeciwnik2;
-
     private Gracz gracz;
-
     private Skat skat;
-
     private RodzajGry rodzaj;
     private WynikGry rezultat;
-
-
 }
