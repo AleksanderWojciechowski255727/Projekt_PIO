@@ -89,6 +89,44 @@ public class RozdanieTest {
         assertEquals(false, wynik.wygrana);
     }
 
+
+    @Test
+    public void graGrandMaWartosc24(){
+        rozdanie.ustawRodzajGry(graGrand());
+
+        assertEquals(24, rozdanie.obliczWartoscGry());
+    }
+
+
+    @Test
+    public void graKolorowaTreflMaWartosc12(){
+        rozdanie.ustawRodzajGry(graKolorowa());
+
+        assertEquals(12, rozdanie.obliczWartoscGry());
+    }
+
+
+    @Test
+    public void graKolorowaPikMaWartosc11(){
+        rozdanie.ustawRodzajGry(graKolorowa(Kolor.PIK));
+
+        assertEquals(11, rozdanie.obliczWartoscGry());
+    }
+
+    @Test
+    public void graKolorowaSerceMaWartosc10(){
+        rozdanie.ustawRodzajGry(graKolorowa(Kolor.SERCE));
+
+        assertEquals(10, rozdanie.obliczWartoscGry());
+    }
+
+    @Test
+    public void graKolorowaDzwonekMaWartosc9(){
+        rozdanie.ustawRodzajGry(graKolorowa(Kolor.DZWONEK));
+
+        assertEquals(9, rozdanie.obliczWartoscGry());
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
@@ -96,9 +134,13 @@ public class RozdanieTest {
     }
 
     private RodzajGry graKolorowa(){
+        return graKolorowa(Kolor.TREFL);
+    }
+
+    private RodzajGry graKolorowa(Kolor kolor){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.KOLOROWA;
-        rodzajGry.kolor = Kolor.TREFL;
+        rodzajGry.kolor = kolor;
         return rodzajGry;
     }
 

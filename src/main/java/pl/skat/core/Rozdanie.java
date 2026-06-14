@@ -67,6 +67,39 @@ public class Rozdanie {
         return rezultat;
     }
 
+
+    public int obliczWartoscGry(){
+        if (rodzaj != null && rodzaj.typ == TypGry.GRAND){
+            return 24;
+        }
+
+        if (rodzaj != null && rodzaj.typ == TypGry.KOLOROWA){
+            return obliczWartoscKoloru();
+        }
+
+        return 0;
+    }
+
+    private int obliczWartoscKoloru(){
+        if (rodzaj.kolor == Kolor.TREFL){
+            return 12;
+        }
+
+        if (rodzaj.kolor == Kolor.PIK){
+            return 11;
+        }
+
+        if (rodzaj.kolor == Kolor.SERCE){
+            return 10;
+        }
+
+        if (rodzaj.kolor == Kolor.DZWONEK){
+            return 9;
+        }
+
+        return 0;
+    }
+
     private boolean jestGraNull(){
         return rodzaj != null && rodzaj.typ == TypGry.NULL;
     }
