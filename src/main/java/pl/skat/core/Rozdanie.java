@@ -61,7 +61,7 @@ public class Rozdanie {
         }
 
         if (jestGraPunktowa()){
-            rezultat.wygrana = rezultat.wynik >= 61;
+            rezultat.wygrana = rezultat.wynik >= 61 && obliczWartoscGry() >= wartoscLicytacji;
         }
 
         return rezultat;
