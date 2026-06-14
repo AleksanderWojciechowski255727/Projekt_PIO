@@ -97,6 +97,14 @@ public class RozdanieTest {
         assertEquals(24, rozdanie.obliczWartoscGry());
     }
 
+
+    @Test
+    public void graKolorowaTreflMaWartosc12(){
+        rozdanie.ustawRodzajGry(graKolorowa());
+
+        assertEquals(12, rozdanie.obliczWartoscGry());
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
