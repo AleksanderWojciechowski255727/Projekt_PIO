@@ -131,7 +131,7 @@ public class RozdanieTest {
     @Test
     public void graczPrzegrywaGdyWartoscGryJestMniejszaOdLicytacji(){
         rozdanie.ustawRodzajGry(graGrand());
-        rozdanie.ustawWartoscLicytacji(30);
+        rozdanie.ustawWartoscLicytacji(50);
         gracz.ustawZebraneKarty(kartyZa61Oczek());
 
         WynikGry wynik = rozdanie.obliczWynik();
@@ -143,7 +143,7 @@ public class RozdanieTest {
     @Test
     public void graczWygrywaGdyWartoscGryJestRownaLicytacji(){
         rozdanie.ustawRodzajGry(graGrand());
-        rozdanie.ustawWartoscLicytacji(24);
+        rozdanie.ustawWartoscLicytacji(48);
         gracz.ustawZebraneKarty(kartyZa61Oczek());
 
         WynikGry wynik = rozdanie.obliczWynik();
