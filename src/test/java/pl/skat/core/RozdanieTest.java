@@ -127,6 +127,18 @@ public class RozdanieTest {
         assertEquals(9, rozdanie.obliczWartoscGry());
     }
 
+
+    @Test
+    public void graczPrzegrywaGdyWartoscGryJestMniejszaOdLicytacji(){
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.ustawWartoscLicytacji(30);
+        gracz.ustawZebraneKarty(kartyZa61Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(false, wynik.wygrana);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
