@@ -54,6 +54,12 @@ public class Rozdanie {
     public WynikGry obliczWynik(){
         rezultat = new WynikGry();
         rezultat.wynik = obliczIloscOczekWZebranychKartach();
+
+        if (rodzaj != null && rodzaj.typ == TypGry.NULL){
+            rezultat.wygrana = obliczIloscZebranychKart() == 0;
+            return rezultat;
+        }
+
         rezultat.wygrana = rezultat.wynik >= 61;
         return rezultat;
     }
