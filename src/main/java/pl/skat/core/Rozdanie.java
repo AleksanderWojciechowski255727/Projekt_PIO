@@ -69,6 +69,10 @@ public class Rozdanie {
 
 
     public int obliczWartoscGry(){
+        if (jestGraNull()){
+            return obliczWartoscGryNull();
+        }
+
         return obliczWartoscBazowaGry();
     }
 
@@ -82,6 +86,22 @@ public class Rozdanie {
         }
 
         return 0;
+    }
+
+    private int obliczWartoscGryNull(){
+        if (rodzaj.hand && rodzaj.ouvert){
+            return 59;
+        }
+
+        if (rodzaj.ouvert){
+            return 46;
+        }
+
+        if (rodzaj.hand){
+            return 35;
+        }
+
+        return 23;
     }
 
     private int obliczWartoscKoloru(){
