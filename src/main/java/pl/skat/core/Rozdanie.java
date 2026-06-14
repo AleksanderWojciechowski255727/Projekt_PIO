@@ -69,7 +69,7 @@ public class Rozdanie {
 
 
     public int obliczWartoscGry(){
-        return obliczWartoscBazowaGry();
+        return obliczWartoscBazowaGry()*2;
     }
 
     public int obliczWartoscBazowaGry(){
