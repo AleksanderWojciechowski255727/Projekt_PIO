@@ -69,7 +69,9 @@ public class Rozdanie {
 
 
     public int obliczWartoscGry(){
-        //Placeholder
+        if (rodzaj != null && rodzaj.typ == TypGry.GRAND){
+            return 24;
+        }
         return 0;
     }
 
