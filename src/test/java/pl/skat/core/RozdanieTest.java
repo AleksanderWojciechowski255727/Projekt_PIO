@@ -139,6 +139,29 @@ public class RozdanieTest {
         assertEquals(false, wynik.wygrana);
     }
 
+
+    @Test
+    public void graczWygrywaGdyWartoscGryJestRownaLicytacji(){
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.ustawWartoscLicytacji(24);
+        gracz.ustawZebraneKarty(kartyZa61Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(true, wynik.wygrana);
+    }
+
+    @Test
+    public void graczWygrywaGdyWartoscGryJestWiekszaOdLicytacji(){
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.ustawWartoscLicytacji(18);
+        gracz.ustawZebraneKarty(kartyZa61Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(true, wynik.wygrana);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
