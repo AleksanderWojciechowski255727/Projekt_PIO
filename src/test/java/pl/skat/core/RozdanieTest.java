@@ -68,6 +68,27 @@ public class RozdanieTest {
         assertEquals(false, wynik.wygrana);
     }
 
+
+    @Test
+    public void graczWygrywaGreGrandGdyZdobyl61Oczek(){
+        rozdanie.ustawRodzajGry(graGrand());
+        gracz.ustawZebraneKarty(kartyZa61Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(true, wynik.wygrana && wynik.wynik == 61);
+    }
+
+    @Test
+    public void graczPrzegrywaGreGrandGdyZdobyl60Oczek(){
+        rozdanie.ustawRodzajGry(graGrand());
+        gracz.ustawZebraneKarty(kartyZa60Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+
+        assertEquals(false, wynik.wygrana);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
@@ -78,6 +99,13 @@ public class RozdanieTest {
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.KOLOROWA;
         rodzajGry.kolor = Kolor.TREFL;
+        return rodzajGry;
+    }
+
+
+    private RodzajGry graGrand(){
+        RodzajGry rodzajGry = new RodzajGry();
+        rodzajGry.typ = TypGry.GRAND;
         return rodzajGry;
     }
 
