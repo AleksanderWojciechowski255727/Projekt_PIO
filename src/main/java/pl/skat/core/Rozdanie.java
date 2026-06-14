@@ -55,13 +55,24 @@ public class Rozdanie {
         rezultat = new WynikGry();
         rezultat.wynik = obliczIloscOczekWZebranychKartach();
 
-        if (rodzaj != null && rodzaj.typ == TypGry.NULL){
+        if (jestGraNull()){
             rezultat.wygrana = obliczIloscZebranychKart() == 0;
             return rezultat;
         }
 
-        rezultat.wygrana = rezultat.wynik >= 61;
+        if (jestGraPunktowa()){
+            rezultat.wygrana = rezultat.wynik >= 61;
+        }
+
         return rezultat;
+    }
+
+    private boolean jestGraNull(){
+        return rodzaj != null && rodzaj.typ == TypGry.NULL;
+    }
+
+    private boolean jestGraPunktowa(){
+        return rodzaj == null || rodzaj.typ == TypGry.KOLOROWA || rodzaj.typ == TypGry.GRAND;
     }
 
     private int wartoscLicytacji;
