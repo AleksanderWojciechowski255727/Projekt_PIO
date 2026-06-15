@@ -225,6 +225,17 @@ public class RozdanieTest {
         assertEquals(true, wynik.wygrana);
     }
 
+
+    @Test
+    // zebrał 30 oczek lub mniej
+    public void rozgrywajacyZostalKrawcemZ30Oczkami() {
+        gracz.ustawZebraneKarty(kartyZa30Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+		assertEquals(true,rozdanie.rodzaj.schneider);
+        assertEquals(false, wynik.wygrana);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
@@ -289,6 +300,14 @@ public class RozdanieTest {
                 new Karta(Kolor.TREFL, Figura.DZIESIATKA),
                 new Karta(Kolor.PIK, Figura.KROL),
                 new Karta(Kolor.SERCE, Figura.JOPEK)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa30Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA)
         );
     }
 
