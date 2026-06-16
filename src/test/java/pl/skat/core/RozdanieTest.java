@@ -229,10 +229,32 @@ public class RozdanieTest {
     @Test
     // zebrał 30 oczek lub mniej
     public void rozgrywajacyZostalKrawcemZ30Oczkami() {
+        rozdanie.ustawRodzajGry(graKolorowa());
         gracz.ustawZebraneKarty(kartyZa30Oczek());
 
         WynikGry wynik = rozdanie.obliczWynik();
 		assertEquals(true,rozdanie.rodzaj.schneider);
+        assertEquals(false, wynik.wygrana);
+    }
+
+    @Test
+    public void rozgrywajacyZostalKrawcemZ29Oczkami() {
+
+        gracz.ustawZebraneKarty(kartyZa29Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+		assertEquals(true,rozdanie.rodzaj.schneider);
+        assertEquals(false, wynik.wygrana);
+    }
+
+    @Test
+    public void rozgrywajacyNieZostalKrawcemZ31Oczkami() {
+        gracz.ustawZebraneKarty(kartyZa31Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+//        if (rozdanie.rodzaj!=null){
+            assertEquals(false,rozdanie.rodzaj.schneider);
+//        }
         assertEquals(false, wynik.wygrana);
     }
 
@@ -308,6 +330,25 @@ public class RozdanieTest {
                 new Karta(Kolor.TREFL, Figura.DZIESIATKA),
                 new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
                 new Karta(Kolor.PIK, Figura.DZIESIATKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa29Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.SIODEMKA),
+                new Karta(Kolor.PIK, Figura.OSEMKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa31Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.AS)
         );
     }
 
