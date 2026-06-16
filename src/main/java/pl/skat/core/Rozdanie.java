@@ -62,7 +62,7 @@ public class Rozdanie {
 
 		if (jestGraPunktowa()) {
 			if (rodzaj == null) rodzaj = new RodzajGry();
-			if (rezultat.wynik <= 30) {
+			if (rezultat.wynik <= 30 || rezultat.wynik >= 90) {
 				rodzaj.schneider = true;
 			}
 			rezultat.wygrana = rezultat.wynik >= 61 && obliczWartoscGry() >= wartoscLicytacji;

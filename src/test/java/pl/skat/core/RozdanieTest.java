@@ -258,6 +258,14 @@ public class RozdanieTest {
         assertEquals(false, wynik.wygrana);
     }
 
+    @Test
+    public void przeciwnicyZostaliKrawcamiZ30Oczkami() {
+        gracz.ustawZebraneKarty(kartyZa90Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+        assertEquals(true,rozdanie.rodzaj.schneider);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
@@ -349,6 +357,23 @@ public class RozdanieTest {
                 new Karta(Kolor.TREFL, Figura.DZIESIATKA),
                 new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
                 new Karta(Kolor.PIK, Figura.AS)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa90Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.SIODEMKA),
+                new Karta(Kolor.PIK, Figura.OSEMKA)
         );
     }
 
