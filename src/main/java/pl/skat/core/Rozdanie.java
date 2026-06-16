@@ -123,6 +123,33 @@ public class Rozdanie {
         return 0;
     }
 
+    public int policzIloscSzczytow(){
+        iloscSzczytow=0;
+        if(rodzaj.typ==TypGry.NULL){
+            return iloscSzczytow;
+        }
+        ArrayList<Karta> kartyZeSzczytami = kartySzczytow11();
+
+        for (Karta karta : kartyZeSzczytami) {
+            if (sprawdzCzyKartaJestWKartachPoczatkowych(karta) == 1) {
+                iloscSzczytow++;
+            } else {
+                break;
+            }
+        }
+        return iloscSzczytow;
+    }
+
+    public int sprawdzCzyKartaJestWKartachPoczatkowych(Karta karta){
+        ArrayList<Karta> kartyPoczatkoweGracza = gracz.getPosiadaneKarty();
+        for (Karta value : kartyPoczatkoweGracza) {
+            if (value.equals(karta)) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
     private boolean jestGraNull(){
         return rodzaj != null && rodzaj.typ == TypGry.NULL;
     }
@@ -131,6 +158,27 @@ public class Rozdanie {
         return rodzaj == null || rodzaj.typ == TypGry.KOLOROWA || rodzaj.typ == TypGry.GRAND;
     }
 
+    private ArrayList<Karta> kartySzczytow11(){
+        Kolor kolor = Kolor.TREFL;
+        if(rodzaj.typ==TypGry.KOLOROWA){
+            kolor = rodzaj.kolor;
+        }
+        ArrayList<Karta> karty = new ArrayList<>();
+        karty.add(new Karta(Kolor.TREFL, Figura.JOPEK));
+        karty.add(new Karta(Kolor.PIK, Figura.JOPEK));
+        karty.add(new Karta(Kolor.SERCE, Figura.JOPEK));
+        karty.add(new Karta(Kolor.DZWONEK, Figura.JOPEK));
+        karty.add(new Karta(kolor, Figura.AS));
+        karty.add(new Karta(kolor, Figura.DZIESIATKA));
+        karty.add(new Karta(kolor, Figura.KROL));
+        karty.add(new Karta(kolor, Figura.KROLOWA));
+        karty.add(new Karta(kolor, Figura.DZIEWIATKA));
+        karty.add(new Karta(kolor, Figura.OSEMKA));
+        karty.add(new Karta(kolor, Figura.SIODEMKA));
+        return karty;
+    }
+
+    private int iloscSzczytow;
     private int wartoscLicytacji;
     private Gracz przeciwnik1;
     private Gracz przeciwnik2;

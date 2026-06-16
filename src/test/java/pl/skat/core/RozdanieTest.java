@@ -225,6 +225,17 @@ public class RozdanieTest {
         assertEquals(true, wynik.wygrana);
     }
 
+    @Test
+    public void iloscSzczytowWReceGraczaWynosi2(){
+        rozdanie.ustawRodzajGry(graKolorowa(Kolor.DZWONEK));
+        rozdanie.ustawWartoscLicytacji(18);
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+
+        int iloscSzczytow = rozdanie.policzIloscSzczytow();
+
+        assertEquals(2, iloscSzczytow);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
@@ -289,6 +300,21 @@ public class RozdanieTest {
                 new Karta(Kolor.TREFL, Figura.DZIESIATKA),
                 new Karta(Kolor.PIK, Figura.KROL),
                 new Karta(Kolor.SERCE, Figura.JOPEK)
+        );
+    }
+
+    private ArrayList<Karta> kartyZ2Szczytami(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.JOPEK),
+                new Karta(Kolor.PIK, Figura.JOPEK),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.SERCE, Figura.SIODEMKA),
+                new Karta(Kolor.SERCE, Figura.DZIEWIATKA)
         );
     }
 
