@@ -131,11 +131,23 @@ public class Rozdanie {
         ArrayList<Karta> kartyZeSzczytami = kartySzczytow11();
 
         for (Karta karta : kartyZeSzczytami) {
-            if (sprawdzCzyKartaJestWKartachPoczatkowych(karta) == 1) {
+            if (sprawdzCzyKartaJestWKartachPoczatkowych(karta) == 1 || sprawdzCzyKartaJestWSkacie(karta) == 1) {
                 iloscSzczytow++;
             } else {
                 break;
             }
+        }
+        if(iloscSzczytow==0){
+            for (Karta karta : kartyZeSzczytami) {
+                if (sprawdzCzyKartaJestWKartachPoczatkowych(karta) == 0 && sprawdzCzyKartaJestWSkacie(karta) == 0) {
+                    iloscSzczytow++;
+                } else {
+                    break;
+                }
+            }
+        }
+        if(rodzaj.typ==TypGry.GRAND && iloscSzczytow>4){
+            iloscSzczytow = 4;
         }
         return iloscSzczytow;
     }
@@ -146,6 +158,13 @@ public class Rozdanie {
             if (value.equals(karta)) {
                 return 1;
             }
+        }
+        return 0;
+    }
+
+    public int sprawdzCzyKartaJestWSkacie(Karta karta){
+        if(skat.getKarta1().equals(karta)||skat.getKarta2().equals(karta)){
+            return 1;
         }
         return 0;
     }
