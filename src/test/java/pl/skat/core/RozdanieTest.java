@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RozdanieTest {
     private Gracz gracz;
@@ -266,6 +266,22 @@ public class RozdanieTest {
         assertEquals(true,rozdanie.rodzaj.schneider);
     }
 
+    @Test
+    public void przeciwnicyZostaliKrawcamiZ93Oczkami() {
+        gracz.ustawZebraneKarty(kartyZa93Oczek());
+
+		rozdanie.obliczWynik();
+		assertTrue(rozdanie.rodzaj.schneider);
+    }
+
+    @Test
+    public void brakKrawca89Oczek() {
+        gracz.ustawZebraneKarty(kartyZa89Oczek());
+
+		rozdanie.obliczWynik();
+		assertFalse(rozdanie.rodzaj.schneider);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
@@ -374,6 +390,40 @@ public class RozdanieTest {
                 new Karta(Kolor.PIK, Figura.KROLOWA),
                 new Karta(Kolor.PIK, Figura.SIODEMKA),
                 new Karta(Kolor.PIK, Figura.OSEMKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa93Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.SIODEMKA),
+                new Karta(Kolor.SERCE, Figura.KROLOWA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa89Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.JOPEK),
+                new Karta(Kolor.PIK, Figura.DZIEWIATKA),
+                new Karta(Kolor.PIK, Figura.SIODEMKA),
+                new Karta(Kolor.SERCE, Figura.KROLOWA)
         );
     }
 
