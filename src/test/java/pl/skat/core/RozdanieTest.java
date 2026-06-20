@@ -377,6 +377,37 @@ public class RozdanieTest {
     }
 
     @Test
+    public void rozgrywajacyWygrywaGrandHandZ2SzczytamiSzwarc() {
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+        gracz.ustawZebraneKarty(karty10Lew());
+        rozdanie.ustawSkat(skatBezSzczytow());
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.rodzaj.hand = true;
+
+        rozdanie.obliczWynik();
+		assertTrue(rozdanie.rodzaj.schneider);
+		assertTrue(rozdanie.rodzaj.schwarz);
+
+        assertEquals(6*24, rozdanie.obliczWartoscGry());
+
+    }
+
+    @Test
+    public void rozgrywajacyWygrywaGrandZ2SzczytamiSzwarcPrzyZapowiedziKrawca() {
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+        gracz.ustawZebraneKarty(karty10Lew());
+        rozdanie.ustawSkat(skatBezSzczytow());
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.rodzaj.schneiderZapowiedziany = true;
+
+        rozdanie.obliczWynik();
+
+        assertEquals(6*24, rozdanie.obliczWartoscGry());
+
+    }
+
+
+    @Test
     public void brakSzwarca9Lew() {
         gracz.ustawZebraneKarty(karty9Lew());
 

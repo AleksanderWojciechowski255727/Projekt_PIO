@@ -88,7 +88,13 @@ public class Rozdanie {
         if (rodzaj.schneider){
             mnoznik ++;
         }
+        if (rodzaj.schneiderZapowiedziany){
+            mnoznik ++;
+        }
         if (rodzaj.schwarz){
+            mnoznik ++;
+        }
+        if (rodzaj.hand){
             mnoznik ++;
         }
         return obliczWartoscBazowaGry()* mnoznik;
