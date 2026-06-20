@@ -339,6 +339,44 @@ public class RozdanieTest {
         assertEquals(4, iloscSzczytow);
     }
 
+    @Test
+    public void przeciwnicyPrzegraliSzwarc() {
+        gracz.ustawZebraneKarty(karty10Lew());
+        rozdanie.obliczIloscZebranychKart();
+
+        rozdanie.obliczWynik();
+		assertTrue(rozdanie.rodzaj.schneider);
+		assertTrue(rozdanie.rodzaj.schwarz);
+
+    }
+
+    @Test
+    public void rozgrywajacyPrzegralSzwarc() {
+        gracz.ustawZebraneKarty(karty0Lew());
+        rozdanie.obliczIloscZebranychKart();
+
+        rozdanie.obliczWynik();
+		assertTrue(rozdanie.rodzaj.schneider);
+		assertTrue(rozdanie.rodzaj.schwarz);
+
+    }
+
+    @Test
+    public void brakSzwarca9Lew() {
+        gracz.ustawZebraneKarty(karty9Lew());
+
+		rozdanie.obliczWynik();
+		assertFalse(rozdanie.rodzaj.schwarz);
+    }
+
+    @Test
+    public void brakSzwarca1Lewa() {
+        gracz.ustawZebraneKarty(karty1Lewa());
+
+		rozdanie.obliczWynik();
+		assertFalse(rozdanie.rodzaj.schwarz);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
@@ -579,5 +617,95 @@ public class RozdanieTest {
         }
 
         return zebraneKarty;
+    }
+
+    private ArrayList<Karta> karty10Lew(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.JOPEK),
+                new Karta(Kolor.PIK, Figura.JOPEK),
+                new Karta(Kolor.SERCE, Figura.JOPEK),
+                new Karta(Kolor.TREFL, Figura.JOPEK),
+
+                new Karta(Kolor.SERCE, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.SERCE, Figura.KROLOWA),
+                new Karta(Kolor.TREFL, Figura.KROLOWA),
+
+                new Karta(Kolor.SERCE, Figura.KROL),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.SERCE, Figura.KROL),
+                new Karta(Kolor.TREFL, Figura.KROL),
+
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+
+                new Karta(Kolor.SERCE, Figura.DZIEWIATKA),
+                new Karta(Kolor.PIK, Figura.DZIEWIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIEWIATKA),
+                new Karta(Kolor.TREFL, Figura.DZIEWIATKA),
+
+                new Karta(Kolor.SERCE, Figura.OSEMKA),
+                new Karta(Kolor.PIK, Figura.OSEMKA),
+                new Karta(Kolor.SERCE, Figura.OSEMKA),
+                new Karta(Kolor.TREFL, Figura.OSEMKA),
+
+                new Karta(Kolor.SERCE, Figura.SIODEMKA),
+                new Karta(Kolor.PIK, Figura.SIODEMKA)
+        );
+    }
+
+     private ArrayList<Karta> karty0Lew(){
+        return karty(       );
+    }
+
+    private ArrayList<Karta> karty9Lew(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.JOPEK),
+                new Karta(Kolor.PIK, Figura.JOPEK),
+                new Karta(Kolor.SERCE, Figura.JOPEK),
+                new Karta(Kolor.TREFL, Figura.JOPEK),
+
+                new Karta(Kolor.SERCE, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.SERCE, Figura.KROLOWA),
+                new Karta(Kolor.TREFL, Figura.KROLOWA),
+
+                new Karta(Kolor.SERCE, Figura.KROL),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.SERCE, Figura.KROL),
+                new Karta(Kolor.TREFL, Figura.KROL),
+
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+
+                new Karta(Kolor.SERCE, Figura.DZIEWIATKA),
+                new Karta(Kolor.PIK, Figura.DZIEWIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIEWIATKA),
+                new Karta(Kolor.TREFL, Figura.DZIEWIATKA),
+
+                new Karta(Kolor.SERCE, Figura.OSEMKA),
+                new Karta(Kolor.PIK, Figura.OSEMKA),
+                new Karta(Kolor.SERCE, Figura.OSEMKA)
+        );
+    }
+
+    private ArrayList<Karta> karty1Lewa(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS)
+        );
     }
 }
