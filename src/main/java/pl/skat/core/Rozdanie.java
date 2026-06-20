@@ -60,9 +60,13 @@ public class Rozdanie {
             return rezultat;
         }
 
-        if (jestGraPunktowa()){
-            rezultat.wygrana = rezultat.wynik >= 61 && obliczWartoscGry() >= wartoscLicytacji;
-        }
+		if (jestGraPunktowa()) {
+			if (rodzaj == null) rodzaj = new RodzajGry();
+			if (rezultat.wynik <= 30 || rezultat.wynik >= 90) {
+				rodzaj.schneider = true;
+			}
+			rezultat.wygrana = rezultat.wynik >= 61 && obliczWartoscGry() >= wartoscLicytacji;
+		}
 
         return rezultat;
     }
@@ -203,6 +207,6 @@ public class Rozdanie {
     private Gracz przeciwnik2;
     private Gracz gracz;
     private Skat skat;
-    private RodzajGry rodzaj;
+    public RodzajGry rodzaj;
     private WynikGry rezultat;
 }

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RozdanieTest {
     private Gracz gracz;
@@ -225,6 +225,63 @@ public class RozdanieTest {
         assertEquals(true, wynik.wygrana);
     }
 
+
+    @Test
+    // zebrał 30 oczek lub mniej
+    public void rozgrywajacyZostalKrawcemZ30Oczkami() {
+        rozdanie.ustawRodzajGry(graKolorowa());
+        gracz.ustawZebraneKarty(kartyZa30Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+		assertEquals(true,rozdanie.rodzaj.schneider);
+        assertEquals(false, wynik.wygrana);
+    }
+
+    @Test
+    public void rozgrywajacyZostalKrawcemZ29Oczkami() {
+
+        gracz.ustawZebraneKarty(kartyZa29Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+		assertEquals(true,rozdanie.rodzaj.schneider);
+        assertEquals(false, wynik.wygrana);
+    }
+
+    @Test
+    public void rozgrywajacyNieZostalKrawcemZ31Oczkami() {
+        gracz.ustawZebraneKarty(kartyZa31Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+//        if (rozdanie.rodzaj!=null){
+            assertEquals(false,rozdanie.rodzaj.schneider);
+//        }
+        assertEquals(false, wynik.wygrana);
+    }
+
+    @Test
+    public void przeciwnicyZostaliKrawcamiZ30Oczkami() {
+        gracz.ustawZebraneKarty(kartyZa90Oczek());
+
+        WynikGry wynik = rozdanie.obliczWynik();
+        assertEquals(true,rozdanie.rodzaj.schneider);
+    }
+
+    @Test
+    public void przeciwnicyZostaliKrawcamiZ93Oczkami() {
+        gracz.ustawZebraneKarty(kartyZa93Oczek());
+
+		rozdanie.obliczWynik();
+		assertTrue(rozdanie.rodzaj.schneider);
+    }
+
+    @Test
+    public void brakKrawca89Oczek() {
+        gracz.ustawZebraneKarty(kartyZa89Oczek());
+
+		rozdanie.obliczWynik();
+		assertFalse(rozdanie.rodzaj.schneider);
+    }
+
     @Test
     public void iloscSzczytowWReceGraczaWynosi2(){
         rozdanie.ustawRodzajGry(graKolorowa(Kolor.DZWONEK));
@@ -346,6 +403,84 @@ public class RozdanieTest {
                 new Karta(Kolor.TREFL, Figura.DZIESIATKA),
                 new Karta(Kolor.PIK, Figura.KROL),
                 new Karta(Kolor.SERCE, Figura.JOPEK)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa30Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa29Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.SIODEMKA),
+                new Karta(Kolor.PIK, Figura.OSEMKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa31Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.AS)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa90Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.SIODEMKA),
+                new Karta(Kolor.PIK, Figura.OSEMKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa93Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.PIK, Figura.SIODEMKA),
+                new Karta(Kolor.SERCE, Figura.KROLOWA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZa89Oczek(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.DZWONEK, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.JOPEK),
+                new Karta(Kolor.PIK, Figura.DZIEWIATKA),
+                new Karta(Kolor.PIK, Figura.SIODEMKA),
+                new Karta(Kolor.SERCE, Figura.KROLOWA)
         );
     }
 
