@@ -65,6 +65,10 @@ public class Rozdanie {
 			if (rezultat.wynik <= 30 || rezultat.wynik >= 90) {
 				rodzaj.schneider = true;
 			}
+            if (obliczIloscZebranychKart() == 30) {
+                rodzaj.schwarz = true;
+            }
+
 			rezultat.wygrana = rezultat.wynik >= 61 && obliczWartoscGry() >= wartoscLicytacji;
 		}
 
