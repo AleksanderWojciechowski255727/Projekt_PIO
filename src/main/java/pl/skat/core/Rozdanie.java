@@ -70,6 +70,9 @@ public class Rozdanie {
             }
 
 			rezultat.wygrana = rezultat.wynik >= 61 && obliczWartoscGry() >= wartoscLicytacji;
+            if (!rezultat.wygrana && obliczWartoscGry() !=0) {
+                rezultat.wynik = -2*(wartoscLicytacji/obliczWartoscBazowaGry()+1)*obliczWartoscBazowaGry();
+            }
 		}
 
         return rezultat;
@@ -229,5 +232,5 @@ public class Rozdanie {
     private Gracz gracz;
     private Skat skat;
     public RodzajGry rodzaj;
-    private WynikGry rezultat;
+    public WynikGry rezultat;
 }

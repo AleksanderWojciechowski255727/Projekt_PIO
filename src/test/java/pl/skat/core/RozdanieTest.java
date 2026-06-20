@@ -406,6 +406,20 @@ public class RozdanieTest {
 
     }
 
+    @Test
+    public void rozgrywajacyPrzegrywaGrandZ2SzczytamiPomimoSzwarcaPrzezPrzelicytowanie() {
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+        gracz.ustawZebraneKarty(karty10Lew());
+        rozdanie.ustawWartoscLicytacji(121);
+        rozdanie.ustawSkat(skatBezSzczytow());
+        rozdanie.ustawRodzajGry(graGrand());
+
+        rozdanie.obliczWynik();
+        assertEquals(rozdanie.rezultat.wygrana, false);
+        assertEquals(-2*6*24, rozdanie.rezultat.wynik);
+
+    }
+
 
     @Test
     public void brakSzwarca9Lew() {
