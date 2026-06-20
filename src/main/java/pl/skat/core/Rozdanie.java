@@ -65,7 +65,7 @@ public class Rozdanie {
 			if (rezultat.wynik <= 30 || rezultat.wynik >= 90) {
 				rodzaj.schneider = true;
 			}
-            if (obliczIloscZebranychKart() == 30) {
+            if (obliczIloscZebranychKart() == 30 || obliczIloscZebranychKart() == 0) {
                 rodzaj.schwarz = true;
             }
 

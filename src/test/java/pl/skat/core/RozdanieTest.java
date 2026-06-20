@@ -350,6 +350,17 @@ public class RozdanieTest {
 
     }
 
+    @Test
+    public void rozgrywajacyPrzegralSzwarc() {
+        gracz.ustawZebraneKarty(karty0Lew());
+        rozdanie.obliczIloscZebranychKart();
+
+        rozdanie.obliczWynik();
+		assertTrue(rozdanie.rodzaj.schneider);
+		assertTrue(rozdanie.rodzaj.schwarz);
+
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
@@ -633,5 +644,8 @@ public class RozdanieTest {
         );
     }
 
+     private ArrayList<Karta> karty0Lew(){
+        return karty(       );
+    }
 
 }
