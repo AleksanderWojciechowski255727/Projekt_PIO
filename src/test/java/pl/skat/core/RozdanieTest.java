@@ -362,6 +362,21 @@ public class RozdanieTest {
     }
 
     @Test
+    public void rozgrywajacyWygrywaGrandZ2SzczytamiSzwarc() {
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+        gracz.ustawZebraneKarty(karty10Lew());
+        rozdanie.ustawSkat(skatBezSzczytow());
+        rozdanie.ustawRodzajGry(graGrand());
+
+        rozdanie.obliczWynik();
+		assertTrue(rozdanie.rodzaj.schneider);
+		assertTrue(rozdanie.rodzaj.schwarz);
+
+        assertEquals(5*24, rozdanie.obliczWartoscGry());
+
+    }
+
+    @Test
     public void brakSzwarca9Lew() {
         gracz.ustawZebraneKarty(karty9Lew());
 

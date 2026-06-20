@@ -80,7 +80,18 @@ public class Rozdanie {
         if (jestGraNull()){
             return obliczWartoscGryNull();
         }
-        return obliczWartoscBazowaGry()*2;
+        if (gracz.getPosiadaneKarty() == null){
+            return obliczWartoscBazowaGry()*2;
+        }
+
+        int mnoznik = policzIloscSzczytow()+1;
+        if (rodzaj.schneider){
+            mnoznik ++;
+        }
+        if (rodzaj.schwarz){
+            mnoznik ++;
+        }
+        return obliczWartoscBazowaGry()* mnoznik;
     }
 
     public int obliczWartoscBazowaGry(){
