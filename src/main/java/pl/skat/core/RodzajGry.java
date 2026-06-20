@@ -4,9 +4,11 @@ public class RodzajGry
 {
 
     public TypGry typ;
-    boolean schwarz = false;
-    boolean schneider = false;
-    boolean hand = false;
-    boolean ouvert = false;
+    public boolean schwarz = false;
+    public boolean schwarzZapowiedziany = false;
+    public boolean schneider = false;
+    public boolean schneiderZapowiedziany = false;
+    public boolean hand = false;
+    public boolean ouvert = false;
     public Kolor kolor;
 }

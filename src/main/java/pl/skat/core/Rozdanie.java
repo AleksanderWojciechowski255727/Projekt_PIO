@@ -70,6 +70,9 @@ public class Rozdanie {
             }
 
 			rezultat.wygrana = rezultat.wynik >= 61 && obliczWartoscGry() >= wartoscLicytacji;
+            if (!rezultat.wygrana && obliczWartoscGry() !=0) {
+                rezultat.wynik = -2*(wartoscLicytacji/obliczWartoscBazowaGry()+1)*obliczWartoscBazowaGry();
+            }
 		}
 
         return rezultat;
@@ -80,7 +83,24 @@ public class Rozdanie {
         if (jestGraNull()){
             return obliczWartoscGryNull();
         }
-        return obliczWartoscBazowaGry()*2;
+        if (gracz.getPosiadaneKarty() == null){
+            return obliczWartoscBazowaGry()*2;
+        }
+
+        int mnoznik = policzIloscSzczytow()+1;
+        if (rodzaj.schneider){
+            mnoznik ++;
+        }
+        if (rodzaj.schneiderZapowiedziany){
+            mnoznik ++;
+        }
+        if (rodzaj.schwarz){
+            mnoznik ++;
+        }
+        if (rodzaj.hand){
+            mnoznik ++;
+        }
+        return obliczWartoscBazowaGry()* mnoznik;
     }
 
     public int obliczWartoscBazowaGry(){
@@ -212,5 +232,5 @@ public class Rozdanie {
     private Gracz gracz;
     private Skat skat;
     public RodzajGry rodzaj;
-    private WynikGry rezultat;
+    public WynikGry rezultat;
 }

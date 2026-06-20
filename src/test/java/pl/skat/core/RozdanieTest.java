@@ -362,6 +362,66 @@ public class RozdanieTest {
     }
 
     @Test
+    public void rozgrywajacyWygrywaGrandZ2SzczytamiSzwarc() {
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+        gracz.ustawZebraneKarty(karty10Lew());
+        rozdanie.ustawSkat(skatBezSzczytow());
+        rozdanie.ustawRodzajGry(graGrand());
+
+        rozdanie.obliczWynik();
+		assertTrue(rozdanie.rodzaj.schneider);
+		assertTrue(rozdanie.rodzaj.schwarz);
+
+        assertEquals(5*24, rozdanie.obliczWartoscGry());
+
+    }
+
+    @Test
+    public void rozgrywajacyWygrywaGrandHandZ2SzczytamiSzwarc() {
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+        gracz.ustawZebraneKarty(karty10Lew());
+        rozdanie.ustawSkat(skatBezSzczytow());
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.rodzaj.hand = true;
+
+        rozdanie.obliczWynik();
+		assertTrue(rozdanie.rodzaj.schneider);
+		assertTrue(rozdanie.rodzaj.schwarz);
+
+        assertEquals(6*24, rozdanie.obliczWartoscGry());
+
+    }
+
+    @Test
+    public void rozgrywajacyWygrywaGrandZ2SzczytamiSzwarcPrzyZapowiedziKrawca() {
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+        gracz.ustawZebraneKarty(karty10Lew());
+        rozdanie.ustawSkat(skatBezSzczytow());
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.rodzaj.schneiderZapowiedziany = true;
+
+        rozdanie.obliczWynik();
+
+        assertEquals(6*24, rozdanie.obliczWartoscGry());
+
+    }
+
+    @Test
+    public void rozgrywajacyPrzegrywaGrandZ2SzczytamiPomimoSzwarcaPrzezPrzelicytowanie() {
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+        gracz.ustawZebraneKarty(karty10Lew());
+        rozdanie.ustawWartoscLicytacji(121);
+        rozdanie.ustawSkat(skatBezSzczytow());
+        rozdanie.ustawRodzajGry(graGrand());
+
+        rozdanie.obliczWynik();
+        assertEquals(rozdanie.rezultat.wygrana, false);
+        assertEquals(-2*6*24, rozdanie.rezultat.wynik);
+
+    }
+
+
+    @Test
     public void brakSzwarca9Lew() {
         gracz.ustawZebraneKarty(karty9Lew());
 
