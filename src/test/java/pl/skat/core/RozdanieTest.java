@@ -225,6 +225,63 @@ public class RozdanieTest {
         assertEquals(true, wynik.wygrana);
     }
 
+    @Test
+    public void iloscSzczytowWReceGraczaWynosi2(){
+        rozdanie.ustawRodzajGry(graKolorowa(Kolor.DZWONEK));
+        rozdanie.ustawWartoscLicytacji(18);
+        gracz.ustawPosiadaneKarty(kartyZ2Szczytami());
+        rozdanie.ustawSkat(skatZ1Szczytem());
+        int iloscSzczytow = rozdanie.policzIloscSzczytow();
+
+        assertEquals(2, iloscSzczytow);
+    }
+
+    @Test
+    public void GraczGraBezDwochSzczytow(){
+        rozdanie.ustawRodzajGry(graKolorowa(Kolor.DZWONEK));
+        rozdanie.ustawWartoscLicytacji(18);
+        gracz.ustawPosiadaneKarty(kartyBez2Szczytow());
+        rozdanie.ustawSkat(skatBezSzczytow());
+        int iloscSzczytow = rozdanie.policzIloscSzczytow();
+
+        assertEquals(2, iloscSzczytow);
+    }
+
+    @Test
+    public void iloscSzczytowWReceGraczaWynosi11(){
+        rozdanie.ustawRodzajGry(graKolorowa(Kolor.TREFL));
+        rozdanie.ustawWartoscLicytacji(18);
+        gracz.ustawPosiadaneKarty(kartyZ10Szczytami());
+        rozdanie.ustawSkat(skatZ1Szczytem());
+
+        int iloscSzczytow = rozdanie.policzIloscSzczytow();
+
+        assertEquals(11, iloscSzczytow);
+    }
+
+    @Test
+    public void GraczGraBezJedenastuSzczytow(){
+        rozdanie.ustawRodzajGry(graKolorowa(Kolor.DZWONEK));
+        rozdanie.ustawWartoscLicytacji(18);
+        gracz.ustawPosiadaneKarty(kartyBez10Szczytow());
+        rozdanie.ustawSkat(skatBezSzczytow());
+
+        int iloscSzczytow = rozdanie.policzIloscSzczytow();
+
+        assertEquals(11, iloscSzczytow);
+    }
+
+    @Test
+    public void iloscSzczytowWReceGraczaWynosi5AleGraczGraGrand(){
+        rozdanie.ustawRodzajGry(graGrand());
+        rozdanie.ustawWartoscLicytacji(18);
+        gracz.ustawPosiadaneKarty(kartyZ5Szczytami());
+        rozdanie.ustawSkat(skatBezSzczytow());
+        int iloscSzczytow = rozdanie.policzIloscSzczytow();
+
+        assertEquals(4, iloscSzczytow);
+    }
+
     private RodzajGry graNull(){
         RodzajGry rodzajGry = new RodzajGry();
         rodzajGry.typ = TypGry.NULL;
@@ -290,6 +347,93 @@ public class RozdanieTest {
                 new Karta(Kolor.PIK, Figura.KROL),
                 new Karta(Kolor.SERCE, Figura.JOPEK)
         );
+    }
+
+    private ArrayList<Karta> kartyZ2Szczytami(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.JOPEK),
+                new Karta(Kolor.PIK, Figura.JOPEK),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.SERCE, Figura.SIODEMKA),
+                new Karta(Kolor.SERCE, Figura.DZIEWIATKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyBez2Szczytow(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.JOPEK),
+                new Karta(Kolor.DZWONEK, Figura.JOPEK),
+                new Karta(Kolor.TREFL, Figura.SIODEMKA),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.SERCE, Figura.SIODEMKA),
+                new Karta(Kolor.SERCE, Figura.DZIEWIATKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZ10Szczytami(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.JOPEK),
+                new Karta(Kolor.PIK, Figura.JOPEK),
+                new Karta(Kolor.SERCE, Figura.JOPEK),
+                new Karta(Kolor.DZWONEK, Figura.JOPEK),
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.KROL),
+                new Karta(Kolor.TREFL, Figura.KROLOWA),
+                new Karta(Kolor.TREFL, Figura.DZIEWIATKA),
+                new Karta(Kolor.TREFL, Figura.OSEMKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyBez10Szczytow(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.AS),
+                new Karta(Kolor.PIK, Figura.AS),
+                new Karta(Kolor.SERCE, Figura.AS),
+                new Karta(Kolor.PIK, Figura.DZIESIATKA),
+                new Karta(Kolor.TREFL, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.SERCE, Figura.SIODEMKA),
+                new Karta(Kolor.SERCE, Figura.DZIEWIATKA)
+        );
+    }
+
+    private ArrayList<Karta> kartyZ5Szczytami(){
+        return karty(
+                new Karta(Kolor.TREFL, Figura.JOPEK),
+                new Karta(Kolor.PIK, Figura.JOPEK),
+                new Karta(Kolor.SERCE, Figura.JOPEK),
+                new Karta(Kolor.DZWONEK, Figura.JOPEK),
+                new Karta(Kolor.DZWONEK, Figura.AS),
+                new Karta(Kolor.PIK, Figura.KROL),
+                new Karta(Kolor.SERCE, Figura.DZIESIATKA),
+                new Karta(Kolor.PIK, Figura.KROLOWA),
+                new Karta(Kolor.SERCE, Figura.SIODEMKA),
+                new Karta(Kolor.SERCE, Figura.DZIEWIATKA)
+        );
+    }
+    private Skat skatBezSzczytow(){
+        Skat skat = new Skat();
+        skat.ustawKarta1(new Karta(Kolor.TREFL, Figura.DZIEWIATKA));
+        skat.ustawKarta2(new Karta(Kolor.TREFL, Figura.OSEMKA));
+        return skat;
+    }
+    private Skat skatZ1Szczytem(){
+        Skat skat = new Skat();
+        skat.ustawKarta1(new Karta(Kolor.TREFL, Figura.SIODEMKA));
+        skat.ustawKarta2(new Karta(Kolor.DZWONEK, Figura.OSEMKA));
+        return skat;
     }
 
     private ArrayList<Karta> karty(Karta... karty){
